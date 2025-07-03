@@ -69,22 +69,6 @@
       color: #2196F3;
       text-decoration: none;
     }
-    .adjective-type {
-      display: inline-block;
-      padding: 0.2em 0.5em;
-      border-radius: 4px;
-      font-size: 0.8em;
-      margin-left: 0.5em;
-    }
-    .i-adjective {
-      background-color: #4CAF50;
-    }
-    .na-adjective {
-      background-color: #FF9800;
-    }
-    .no-adjective {
-      background-color: #9C27B0;
-    }
   </style>
 </head>
 <body>
@@ -101,7 +85,6 @@
 const adjectiveData = {
   atarashii: {
     adjective: "あたらしい",
-    type: "i",
     meaning: "new",
     examples: [
       {japanese: "これは あたらしい ほんです。", romaji: "Kore wa atarashii hon desu.", english: "This is a new book."},
@@ -111,7 +94,6 @@ const adjectiveData = {
   },
   furui: {
     adjective: "ふるい",
-    type: "i",
     meaning: "old",
     examples: [
       {japanese: "これは ふるい いえです。", romaji: "Kore wa furui ie desu.", english: "This is an old house."},
@@ -121,7 +103,6 @@ const adjectiveData = {
   },
   ookii: {
     adjective: "おおきい",
-    type: "i",
     meaning: "big",
     examples: [
       {japanese: "おおきい いえに すんで います。", romaji: "Ookii ie ni sunde imasu.", english: "I live in a big house."},
@@ -131,7 +112,6 @@ const adjectiveData = {
   },
   chiisai: {
     adjective: "ちいさい",
-    type: "i",
     meaning: "small",
     examples: [
       {japanese: "ちいさい ねこが います。", romaji: "Chiisai neko ga imasu.", english: "There is a small cat."},
@@ -141,7 +121,6 @@ const adjectiveData = {
   },
   takai: {
     adjective: "たかい",
-    type: "i",
     meaning: "expensive/high",
     examples: [
       {japanese: "この ホテルは たかいです。", romaji: "Kono hoteru wa takai desu.", english: "This hotel is expensive."},
@@ -151,7 +130,6 @@ const adjectiveData = {
   },
   yasui: {
     adjective: "やすい",
-    type: "i",
     meaning: "cheap",
     examples: [
       {japanese: "この みせは やすいです。", romaji: "Kono mise wa yasui desu.", english: "This store is cheap."},
@@ -161,7 +139,6 @@ const adjectiveData = {
   },
   hikui: {
     adjective: "ひくい",
-    type: "i",
     meaning: "low",
     examples: [
       {japanese: "この テーブルは ひくいです。", romaji: "Kono tēburu wa hikui desu.", english: "This table is low."},
@@ -171,7 +148,6 @@ const adjectiveData = {
   },
   nagai: {
     adjective: "ながい",
-    type: "i",
     meaning: "long",
     examples: [
       {japanese: "ながい かみが すきです。", romaji: "Nagai kami ga suki desu.", english: "I like long hair."},
@@ -181,7 +157,6 @@ const adjectiveData = {
   },
   mijikai: {
     adjective: "みじかい",
-    type: "i",
     meaning: "short",
     examples: [
       {japanese: "みじかい スカートを はいています。", romaji: "Mijikai sukāto o haite imasu.", english: "I'm wearing a short skirt."},
@@ -191,7 +166,6 @@ const adjectiveData = {
   },
   atsui: {
     adjective: "あつい",
-    type: "i",
     meaning: "hot",
     examples: [
       {japanese: "きょうは あついです。", romaji: "Kyō wa atsui desu.", english: "Today is hot."},
@@ -201,7 +175,6 @@ const adjectiveData = {
   },
   samui: {
     adjective: "さむい",
-    type: "i",
     meaning: "cold",
     examples: [
       {japanese: "ふゆは さむいです。", romaji: "Fuyu wa samui desu.", english: "Winter is cold."},
@@ -211,7 +184,6 @@ const adjectiveData = {
   },
   atatakai: {
     adjective: "あたたかい",
-    type: "i",
     meaning: "warm",
     examples: [
       {japanese: "あたたかい スープが のみたいです。", romaji: "Atatakai sūpu ga nomitai desu.", english: "I want to drink warm soup."},
@@ -221,7 +193,6 @@ const adjectiveData = {
   },
   suzushii: {
     adjective: "すずしい",
-    type: "i",
     meaning: "cool",
     examples: [
       {japanese: "あきは すずしいです。", romaji: "Aki wa suzushii desu.", english: "Autumn is cool."},
@@ -231,7 +202,6 @@ const adjectiveData = {
   },
   muzukashii: {
     adjective: "むずかしい",
-    type: "i",
     meaning: "difficult",
     examples: [
       {japanese: "この もんだいは むずかしいです。", romaji: "Kono mondai wa muzukashii desu.", english: "This problem is difficult."},
@@ -241,7 +211,6 @@ const adjectiveData = {
   },
   yasashii: {
     adjective: "やさしい",
-    type: "i",
     meaning: "easy/kind",
     examples: [
       {japanese: "この しごとは やさしいです。", romaji: "Kono shigoto wa yasashii desu.", english: "This work is easy."},
@@ -251,7 +220,6 @@ const adjectiveData = {
   },
   omoshiroi: {
     adjective: "おもしろい",
-    type: "i",
     meaning: "interesting",
     examples: [
       {japanese: "この えいがは おもしろいです。", romaji: "Kono eiga wa omoshiroi desu.", english: "This movie is interesting."},
@@ -261,7 +229,6 @@ const adjectiveData = {
   },
   tsumaranai: {
     adjective: "つまらない",
-    type: "i",
     meaning: "boring",
     examples: [
       {japanese: "この テレビは つまらないです。", romaji: "Kono terebi wa tsumaranai desu.", english: "This TV show is boring."},
@@ -271,7 +238,6 @@ const adjectiveData = {
   },
   utsukushii: {
     adjective: "うつくしい",
-    type: "i",
     meaning: "beautiful",
     examples: [
       {japanese: "うつくしい はなが さいています。", romaji: "Utsukushii hana ga saite imasu.", english: "Beautiful flowers are blooming."},
@@ -281,7 +247,6 @@ const adjectiveData = {
   },
   minikui: {
     adjective: "みにくい",
-    type: "i",
     meaning: "ugly",
     examples: [
       {japanese: "この えは みにくいです。", romaji: "Kono e wa minikui desu.", english: "This painting is ugly."},
@@ -291,7 +256,6 @@ const adjectiveData = {
   },
   shinsetsu: {
     adjective: "しんせつな",
-    type: "na",
     meaning: "kind",
     examples: [
       {japanese: "しんせつな ひとに あいました。", romaji: "Shinsetsu na hito ni aimashita.", english: "I met a kind person."},
@@ -301,7 +265,6 @@ const adjectiveData = {
   },
   ijiwaru: {
     adjective: "いじわるな",
-    type: "na",
     meaning: "mean",
     examples: [
       {japanese: "いじわるな こどもが います。", romaji: "Ijiwaru na kodomo ga imasu.", english: "There is a mean child."},
@@ -311,7 +274,6 @@ const adjectiveData = {
   },
   genki: {
     adjective: "げんきな",
-    type: "na",
     meaning: "energetic",
     examples: [
       {japanese: "げんきな こどもたちです。", romaji: "Genki na kodomo-tachi desu.", english: "They are energetic children."},
@@ -321,7 +283,6 @@ const adjectiveData = {
   },
   tsukareta: {
     adjective: "つかれた",
-    type: "i",
     meaning: "tired",
     examples: [
       {japanese: "きょうは とても つかれました。", romaji: "Kyō wa totemo tsukaremashita.", english: "I'm very tired today."},
@@ -331,7 +292,6 @@ const adjectiveData = {
   },
   hayai: {
     adjective: "はやい",
-    type: "i",
     meaning: "fast/early",
     examples: [
       {japanese: "この くるまは はやいです。", romaji: "Kono kuruma wa hayai desu.", english: "This car is fast."},
@@ -341,7 +301,6 @@ const adjectiveData = {
   },
   osoi: {
     adjective: "おそい",
-    type: "i",
     meaning: "slow",
     examples: [
       {japanese: "この パソコンは おそいです。", romaji: "Kono pasokon wa osoi desu.", english: "This computer is slow."},
@@ -351,7 +310,6 @@ const adjectiveData = {
   },
   oishii: {
     adjective: "おいしい",
-    type: "i",
     meaning: "delicious",
     examples: [
       {japanese: "この りょうりは おいしいです。", romaji: "Kono ryōri wa oishii desu.", english: "This dish is delicious."},
@@ -361,7 +319,6 @@ const adjectiveData = {
   },
   mazui: {
     adjective: "まずい",
-    type: "i",
     meaning: "bad tasting",
     examples: [
       {japanese: "この スープは まずいです。", romaji: "Kono sūpu wa mazui desu.", english: "This soup tastes bad."},
@@ -371,7 +328,6 @@ const adjectiveData = {
   },
   amai: {
     adjective: "あまい",
-    type: "i",
     meaning: "sweet",
     examples: [
       {japanese: "この ケーキは あまいです。", romaji: "Kono kēki wa amai desu.", english: "This cake is sweet."},
@@ -381,7 +337,6 @@ const adjectiveData = {
   },
   karai: {
     adjective: "からい",
-    type: "i",
     meaning: "spicy",
     examples: [
       {japanese: "この カレーは からいです。", romaji: "Kono karē wa karai desu.", english: "This curry is spicy."},
@@ -391,7 +346,6 @@ const adjectiveData = {
   },
   shoppai: {
     adjective: "しょっぱい",
-    type: "i",
     meaning: "salty",
     examples: [
       {japanese: "この スープは しょっぱいです。", romaji: "Kono sūpu wa shoppai desu.", english: "This soup is salty."},
@@ -401,7 +355,6 @@ const adjectiveData = {
   },
   suppai: {
     adjective: "すっぱい",
-    type: "i",
     meaning: "sour",
     examples: [
       {japanese: "この レモンは すっぱいです。", romaji: "Kono remon wa suppai desu.", english: "This lemon is sour."},
@@ -411,7 +364,6 @@ const adjectiveData = {
   },
   umai: {
     adjective: "うまい",
-    type: "i",
     meaning: "tasty",
     examples: [
       {japanese: "この ラーメンは うまい！", romaji: "Kono rāmen wa umai!", english: "This ramen is tasty!"},
@@ -421,7 +373,6 @@ const adjectiveData = {
   },
   karui: {
     adjective: "かるい",
-    type: "i",
     meaning: "light",
     examples: [
       {japanese: "この かばんは かるいです。", romaji: "Kono kaban wa karui desu.", english: "This bag is light."},
@@ -431,7 +382,6 @@ const adjectiveData = {
   },
   omoi: {
     adjective: "おもい",
-    type: "i",
     meaning: "heavy",
     examples: [
       {japanese: "この にもつは おもいです。", romaji: "Kono nimotsu wa omoi desu.", english: "This luggage is heavy."},
@@ -441,7 +391,6 @@ const adjectiveData = {
   },
   yawarakai: {
     adjective: "やわらかい",
-    type: "i",
     meaning: "soft",
     examples: [
       {japanese: "この パンは やわらかいです。", romaji: "Kono pan wa yawarakai desu.", english: "This bread is soft."},
@@ -451,7 +400,6 @@ const adjectiveData = {
   },
   katai: {
     adjective: "かたい",
-    type: "i",
     meaning: "hard",
     examples: [
       {japanese: "この いすは かたいです。", romaji: "Kono isu wa katai desu.", english: "This chair is hard."},
@@ -461,7 +409,6 @@ const adjectiveData = {
   },
   akarui: {
     adjective: "あかるい",
-    type: "i",
     meaning: "bright",
     examples: [
       {japanese: "この へやは あかるいです。", romaji: "Kono heya wa akarui desu.", english: "This room is bright."},
@@ -471,7 +418,6 @@ const adjectiveData = {
   },
   kurai: {
     adjective: "くらい",
-    type: "i",
     meaning: "dark",
     examples: [
       {japanese: "この みちは くらいです。", romaji: "Kono michi wa kurai desu.", english: "This road is dark."},
@@ -481,7 +427,6 @@ const adjectiveData = {
   },
   urusai: {
     adjective: "うるさい",
-    type: "i",
     meaning: "noisy",
     examples: [
       {japanese: "この まちは うるさいです。", romaji: "Kono machi wa urusai desu.", english: "This town is noisy."},
@@ -491,7 +436,6 @@ const adjectiveData = {
   },
   shizuka: {
     adjective: "しずかな",
-    type: "na",
     meaning: "quiet",
     examples: [
       {japanese: "この としょかんは しずかです。", romaji: "Kono toshokan wa shizuka desu.", english: "This library is quiet."},
@@ -501,7 +445,6 @@ const adjectiveData = {
   },
   kirei: {
     adjective: "きれいな",
-    type: "na",
     meaning: "clean/beautiful",
     examples: [
       {japanese: "この へやは きれいです。", romaji: "Kono heya wa kirei desu.", english: "This room is clean."},
@@ -511,7 +454,6 @@ const adjectiveData = {
   },
   kitanai: {
     adjective: "きたない",
-    type: "i",
     meaning: "dirty",
     examples: [
       {japanese: "この トイレは きたないです。", romaji: "Kono toire wa kitanai desu.", english: "This toilet is dirty."},
@@ -521,7 +463,6 @@ const adjectiveData = {
   },
   yuumei: {
     adjective: "ゆうめいな",
-    type: "na",
     meaning: "famous",
     examples: [
       {japanese: "この レストランは ゆうめいです。", romaji: "Kono resutoran wa yuumei desu.", english: "This restaurant is famous."},
@@ -531,7 +472,6 @@ const adjectiveData = {
   },
   hen: {
     adjective: "へんな",
-    type: "na",
     meaning: "strange",
     examples: [
       {japanese: "へんな おとが しました。", romaji: "Hen na oto ga shimashita.", english: "I heard a strange sound."},
@@ -541,7 +481,6 @@ const adjectiveData = {
   },
   fuben: {
     adjective: "ふべんな",
-    type: "na",
     meaning: "inconvenient",
     examples: [
       {japanese: "この アパートは ふべんです。", romaji: "Kono apāto wa fuben desu.", english: "This apartment is inconvenient."},
@@ -551,7 +490,6 @@ const adjectiveData = {
   },
   benri: {
     adjective: "べんりな",
-    type: "na",
     meaning: "convenient",
     examples: [
       {japanese: "この でんわは べんりです。", romaji: "Kono denwa wa benri desu.", english: "This phone is convenient."},
@@ -561,7 +499,6 @@ const adjectiveData = {
   },
   abunai: {
     adjective: "あぶない",
-    type: "i",
     meaning: "dangerous",
     examples: [
       {japanese: "この みちは あぶないです。", romaji: "Kono michi wa abunai desu.", english: "This road is dangerous."},
@@ -571,7 +508,6 @@ const adjectiveData = {
   },
   anzen: {
     adjective: "あんぜんな",
-    type: "na",
     meaning: "safe",
     examples: [
       {japanese: "この まちは あんぜんです。", romaji: "Kono machi wa anzen desu.", english: "This town is safe."},
@@ -581,7 +517,6 @@ const adjectiveData = {
   },
   tokubetsu: {
     adjective: "とくべつな",
-    type: "na",
     meaning: "special",
     examples: [
       {japanese: "きょうは とくべつな ひです。", romaji: "Kyō wa tokubetsu na hi desu.", english: "Today is a special day."},
@@ -591,7 +526,6 @@ const adjectiveData = {
   },
   futsuu: {
     adjective: "ふつうの",
-    type: "no",
     meaning: "normal",
     examples: [
       {japanese: "ふつうの いちにちでした。", romaji: "Futsuu no ichinichi deshita.", english: "It was a normal day."},
@@ -611,14 +545,9 @@ function loadAdjectiveDetails() {
     return;
   }
   
-  const typeLabel = adjInfo.type === 'i' ? 'い-adjective' : 
-                   adjInfo.type === 'na' ? 'な-adjective' : 'の-adjective';
-  const typeClass = adjInfo.type === 'i' ? 'i-adjective' : 
-                   adjInfo.type === 'na' ? 'na-adjective' : 'no-adjective';
-  
   const container = document.getElementById('adjectiveDetails');
   container.innerHTML = `
-    <h1>${adjInfo.adjective} (${adjRomaji}) <span class="adjective-type ${typeClass}">${typeLabel}</span></h1>
+    <h1>${adjInfo.adjective} (${adjRomaji})</h1>
     <h2>${adjInfo.meaning}</h2>
     <h3>Example Sentences:</h3>
   `;
