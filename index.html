@@ -49,11 +49,23 @@
       color: #2196F3;
       text-decoration: none;
     }
+    .search-box {
+      width: 100%;
+      padding: 0.75em;
+      margin-bottom: 1em;
+      border-radius: 8px;
+      border: none;
+      background-color: #1e1e1e;
+      color: #eee;
+      font-size: 1em;
+    }
   </style>
 </head>
 <body>
 
 <h1>Japanese Adjective 50</h1>
+
+<input type="text" class="search-box" id="searchInput" placeholder="Search adjectives...">
 
 <div class="button-list" id="adjectiveList"></div>
 
@@ -63,27 +75,79 @@
 
 <script>
 const adjectives = [
-  // 他の形容詞...
+  { adjective: "あたらしい", romaji: "atarashii", meaning: "new" },
+  { adjective: "ふるい", romaji: "furui", meaning: "old" },
+  { adjective: "おおきい", romaji: "ookii", meaning: "big" },
+  { adjective: "ちいさい", romaji: "chiisai", meaning: "small" },
+  { adjective: "たかい", romaji: "takai", meaning: "expensive/high" },
+  { adjective: "やすい", romaji: "yasui", meaning: "cheap" },
+  { adjective: "ひくい", romaji: "hikui", meaning: "low" },
+  { adjective: "ながい", romaji: "nagai", meaning: "long" },
+  { adjective: "みじかい", romaji: "mijikai", meaning: "short" },
+  { adjective: "あつい", romaji: "atsui", meaning: "hot" },
+  { adjective: "さむい", romaji: "samui", meaning: "cold" },
+  { adjective: "あたたかい", romaji: "atatakai", meaning: "warm" },
+  { adjective: "すずしい", romaji: "suzushii", meaning: "cool" },
+  { adjective: "むずかしい", romaji: "muzukashii", meaning: "difficult" },
+  { adjective: "やさしい", romaji: "yasashii", meaning: "easy/kind" },
+  { adjective: "おもしろい", romaji: "omoshiroi", meaning: "interesting" },
+  { adjective: "つまらない", romaji: "tsumaranai", meaning: "boring" },
+  { adjective: "うつくしい", romaji: "utsukushii", meaning: "beautiful" },
+  { adjective: "みにくい", romaji: "minikui", meaning: "ugly" },
+  { adjective: "しんせつな", romaji: "shinsetsu", meaning: "kind" },
+  { adjective: "いじわるな", romaji: "ijiwaru", meaning: "mean" },
+  { adjective: "げんきな", romaji: "genki", meaning: "energetic" },
+  { adjective: "つかれた", romaji: "tsukareta", meaning: "tired" },
+  { adjective: "はやい", romaji: "hayai", meaning: "fast/early" },
+  { adjective: "おそい", romaji: "osoi", meaning: "slow" },
+  { adjective: "おいしい", romaji: "oishii", meaning: "delicious" },
+  { adjective: "まずい", romaji: "mazui", meaning: "bad tasting" },
+  { adjective: "あまい", romaji: "amai", meaning: "sweet" },
+  { adjective: "からい", romaji: "karai", meaning: "spicy" },
+  { adjective: "しょっぱい", romaji: "shoppai", meaning: "salty" },
+  { adjective: "すっぱい", romaji: "suppai", meaning: "sour" },
+  { adjective: "うまい", romaji: "umai", meaning: "tasty" },
+  { adjective: "かるい", romaji: "karui", meaning: "light" },
+  { adjective: "おもい", romaji: "omoi", meaning: "heavy" },
+  { adjective: "やわらかい", romaji: "yawarakai", meaning: "soft" },
+  { adjective: "かたい", romaji: "katai", meaning: "hard" },
+  { adjective: "あかるい", romaji: "akarui", meaning: "bright" },
+  { adjective: "くらい", romaji: "kurai", meaning: "dark" },
+  { adjective: "うるさい", romaji: "urusai", meaning: "noisy" },
   { adjective: "しずかな", romaji: "shizuka", meaning: "quiet" },
   { adjective: "きれいな", romaji: "kirei", meaning: "clean/beautiful" },
+  { adjective: "きたない", romaji: "kitanai", meaning: "dirty" },
   { adjective: "ゆうめいな", romaji: "yuumei", meaning: "famous" },
   { adjective: "へんな", romaji: "hen", meaning: "strange" },
+  { adjective: "ふべんな", romaji: "fuben", meaning: "inconvenient" },
   { adjective: "べんりな", romaji: "benri", meaning: "convenient" },
+  { adjective: "あぶない", romaji: "abunai", meaning: "dangerous" },
   { adjective: "あんぜんな", romaji: "anzen", meaning: "safe" },
   { adjective: "とくべつな", romaji: "tokubetsu", meaning: "special" },
-  { adjective: "ふつうの", romaji: "futsuu", meaning: "normal" },
-  // 他の形容詞...
+  { adjective: "ふつうの", romaji: "futsuu", meaning: "normal" }
 ];
 
-function renderAdjectives() {
+function renderAdjectives(filter = '') {
   const container = document.getElementById("adjectiveList");
-  adjectives.forEach(a => {
+  container.innerHTML = '';
+  
+  const filteredAdjs = adjectives.filter(a => 
+    a.adjective.includes(filter) || 
+    a.romaji.includes(filter.toLowerCase()) ||
+    a.meaning.includes(filter.toLowerCase())
+  );
+  
+  filteredAdjs.forEach(a => {
     const btn = document.createElement("button");
     btn.textContent = `${a.adjective} (${a.romaji}) - ${a.meaning}`;
     btn.onclick = () => window.location.href = `adjective.html?adjective=${a.romaji}`;
     container.appendChild(btn);
   });
 }
+
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  renderAdjectives(e.target.value);
+});
 
 renderAdjectives();
 </script>
