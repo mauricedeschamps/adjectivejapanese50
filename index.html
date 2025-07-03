@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#2196F3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Japanese Adjective 50</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232196F3%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232196F3%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 1em;
+    }
+    .button-list button {
+      display: block;
+      width: 100%;
+      padding: 0.75em;
+      margin: 0.5em 0;
+      font-size: 1.2em;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
+      background-color: #1e1e1e;
+      color: #eee;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      transition: 0.2s;
+    }
+    button:hover {
+      background-color: #2e2e2e;
+    }
+    h1 {
+      color: #2196F3;
+      text-align: center;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      padding: 1em;
+      color: #aaa;
+    }
+    .contact-link {
+      color: #2196F3;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<h1>Japanese Adjective 50</h1>
+
+<div class="button-list" id="adjectiveList"></div>
+
+<footer>
+  <a href="mailto:mementomorikatsu@gmail.com" class="contact-link">Contact me<br>mementomorikatsu@gmail.com</a>
+</footer>
+
+<script>
+const adjectives = [
+  { adjective: "あたらしい", romaji: "atarashii", meaning: "new" },
+  { adjective: "ふるい", romaji: "furui", meaning: "old" },
+  { adjective: "おおきい", romaji: "ookii", meaning: "big" },
+  { adjective: "ちいさい", romaji: "chiisai", meaning: "small" },
+  { adjective: "たかい", romaji: "takai", meaning: "expensive" },
+  { adjective: "やすい", romaji: "yasui", meaning: "cheap" },
+  { adjective: "たかい", romaji: "takai", meaning: "high" },
+  { adjective: "ひくい", romaji: "hikui", meaning: "low" },
+  { adjective: "ながい", romaji: "nagai", meaning: "long" },
+  { adjective: "みじかい", romaji: "mijikai", meaning: "short" },
+  { adjective: "あつい", romaji: "atsui", meaning: "hot" },
+  { adjective: "さむい", romaji: "samui", meaning: "cold" },
+  { adjective: "あたたかい", romaji: "atatakai", meaning: "warm" },
+  { adjective: "すずしい", romaji: "suzushii", meaning: "cool" },
+  { adjective: "むずかしい", romaji: "muzukashii", meaning: "difficult" },
+  { adjective: "やさしい", romaji: "yasashii", meaning: "easy" },
+  { adjective: "おもしろい", romaji: "omoshiroi", meaning: "interesting" },
+  { adjective: "つまらない", romaji: "tsumaranai", meaning: "boring" },
+  { adjective: "うつくしい", romaji: "utsukushii", meaning: "beautiful" },
+  { adjective: "みにくい", romaji: "minikui", meaning: "ugly" },
+  { adjective: "しんせつな", romaji: "shinsetsu na", meaning: "kind" },
+  { adjective: "いじわるな", romaji: "ijiwaru na", meaning: "mean" },
+  { adjective: "げんきな", romaji: "genki na", meaning: "energetic" },
+  { adjective: "つかれた", romaji: "tsukareta", meaning: "tired" },
+  { adjective: "はやい", romaji: "hayai", meaning: "fast" },
+  { adjective: "おそい", romaji: "osoi", meaning: "slow" },
+  { adjective: "おいしい", romaji: "oishii", meaning: "delicious" },
+  { adjective: "まずい", romaji: "mazui", meaning: "bad tasting" },
+  { adjective: "あまい", romaji: "amai", meaning: "sweet" },
+  { adjective: "からい", romaji: "karai", meaning: "spicy" },
+  { adjective: "しょっぱい", romaji: "shoppai", meaning: "salty" },
+  { adjective: "すっぱい", romaji: "suppai", meaning: "sour" },
+  { adjective: "うまい", romaji: "umai", meaning: "tasty" },
+  { adjective: "かるい", romaji: "karui", meaning: "light" },
+  { adjective: "おもい", romaji: "omoi", meaning: "heavy" },
+  { adjective: "やわらかい", romaji: "yawarakai", meaning: "soft" },
+  { adjective: "かたい", romaji: "katai", meaning: "hard" },
+  { adjective: "あかるい", romaji: "akarui", meaning: "bright" },
+  { adjective: "くらい", romaji: "kurai", meaning: "dark" },
+  { adjective: "うるさい", romaji: "urusai", meaning: "noisy" },
+  { adjective: "しずかな", romaji: "shizuka na", meaning: "quiet" },
+  { adjective: "きれいな", romaji: "kirei na", meaning: "clean" },
+  { adjective: "きたない", romaji: "kitanai", meaning: "dirty" },
+  { adjective: "ゆうめいな", romaji: "yuumei na", meaning: "famous" },
+  { adjective: "へんな", romaji: "hen na", meaning: "strange" },
+  { adjective: "ふべんな", romaji: "fuben na", meaning: "inconvenient" },
+  { adjective: "べんりな", romaji: "benri na", meaning: "convenient" },
+  { adjective: "あぶない", romaji: "abunai", meaning: "dangerous" },
+  { adjective: "あんぜんな", romaji: "anzen na", meaning: "safe" },
+  { adjective: "とくべつな", romaji: "tokubetsu na", meaning: "special" },
+  { adjective: "ふつうの", romaji: "futsuu no", meaning: "normal" }
+];
+
+function renderAdjectives() {
+  const container = document.getElementById("adjectiveList");
+  adjectives.forEach(a => {
+    const btn = document.createElement("button");
+    btn.textContent = `${a.adjective} (${a.romaji}) - ${a.meaning}`;
+    btn.onclick = () => window.location.href = `adjective.html?adjective=${a.romaji}`;
+    container.appendChild(btn);
+  });
+}
+
+renderAdjectives();
+</script>
+
+</body>
+</html>

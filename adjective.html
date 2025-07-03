@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#2196F3">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>Adjective Details</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232196F3%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%232196F3%22/><text y=%22.9em%22 font-size=%2290%22>🇯🇵</text></svg>">
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #121212;
+      color: #eee;
+      margin: 0;
+      padding: 1em;
+    }
+    .example {
+      background-color: #1e1e1e;
+      padding: 1em;
+      margin: 1em 0;
+      border-radius: 8px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .romaji {
+      color: #aaa;
+      font-style: italic;
+      margin-top: 0.5em;
+    }
+    .english {
+      color: #2196F3;
+      margin-top: 0.5em;
+      font-weight: bold;
+    }
+    button {
+      padding: 0.5em 1em;
+      margin: 0.2em;
+      border-radius: 4px;
+      border: none;
+      cursor: pointer;
+    }
+    .back-btn {
+      background-color: #1565C0;
+      color: white;
+    }
+    .back-btn:hover {
+      background-color: #0D47A1;
+    }
+    h1, h2, h3 {
+      color: #2196F3;
+    }
+    .speak-btn {
+      background-color: #7B1FA2;
+      color: white;
+    }
+    .speak-btn:hover {
+      background-color: #4A148C;
+    }
+    footer {
+      text-align: center;
+      margin-top: 2em;
+      padding: 1em;
+      color: #aaa;
+    }
+    .contact-link {
+      color: #2196F3;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+
+<button class="back-btn" onclick="window.location.href='index.html'">← Back</button>
+
+<div id="adjectiveDetails"></div>
+
+<footer>
+  <a href="mailto:mementomorikatsu@gmail.com" class="contact-link">Contact me<br>mementomorikatsu@gmail.com</a>
+</footer>
+
+<script>
+const adjectiveData = {
+  atarashii: {
+    adjective: "あたらしい",
+    meaning: "new",
+    examples: [
+      {japanese: "これは あたらしい ほんです。", romaji: "Kore wa atarashii hon desu.", english: "This is a new book."},
+      {japanese: "あたらしい くるまを かいました。", romaji: "Atarashii kuruma o kaimashita.", english: "I bought a new car."},
+      {japanese: "あたらしい せんせいが きました。", romaji: "Atarashii sensei ga kimashita.", english: "A new teacher came."}
+    ]
+  },
+  furui: {
+    adjective: "ふるい",
+    meaning: "old",
+    examples: [
+      {japanese: "これは ふるい いえです。", romaji: "Kore wa furui ie desu.", english: "This is an old house."},
+      {japanese: "ふるい ともだちに あいました。", romaji: "Furui tomodachi ni aimashita.", english: "I met an old friend."},
+      {japanese: "この ほんは ふるいです。", romaji: "Kono hon wa furui desu.", english: "This book is old."}
+    ]
+  },
+  ookii: {
+    adjective: "おおきい",
+    meaning: "big",
+    examples: [
+      {japanese: "おおきい いえに すんで います。", romaji: "Ookii ie ni sunde imasu.", english: "I live in a big house."},
+      {japanese: "おおきい かばんが ほしいです。", romaji: "Ookii kaban ga hoshii desu.", english: "I want a big bag."},
+      {japanese: "その いぬは おおきいです。", romaji: "Sono inu wa ookii desu.", english: "That dog is big."}
+    ]
+  },
+  chiisai: {
+    adjective: "ちいさい",
+    meaning: "small",
+    examples: [
+      {japanese: "ちいさい ねこが います。", romaji: "Chiisai neko ga imasu.", english: "There is a small cat."},
+      {japanese: "ちいさい へやに すんで います。", romaji: "Chiisai heya ni sunde imasu.", english: "I live in a small room."},
+      {japanese: "この ケーキは ちいさいです。", romaji: "Kono kēki wa chiisai desu.", english: "This cake is small."}
+    ]
+  },
+  takai: {
+    adjective: "たかい",
+    meaning: "expensive",
+    examples: [
+      {japanese: "この ホテルは たかいです。", romaji: "Kono hoteru wa takai desu.", english: "This hotel is expensive."},
+      {japanese: "たかい くるまを かいたいです。", romaji: "Takai kuruma o kaitai desu.", english: "I want to buy an expensive car."},
+      {japanese: "この レストランは たかすぎます。", romaji: "Kono resutoran wa takasugimasu.", english: "This restaurant is too expensive."}
+    ]
+  },
+  yasui: {
+    adjective: "やすい",
+    meaning: "cheap",
+    examples: [
+      {japanese: "この みせは やすいです。", romaji: "Kono mise wa yasui desu.", english: "This store is cheap."},
+      {japanese: "やすい ほんを かいました。", romaji: "Yasui hon o kaimashita.", english: "I bought a cheap book."},
+      {japanese: "もっと やすい ホテルを さがしています。", romaji: "Motto yasui hoteru o sagashite imasu.", english: "I'm looking for a cheaper hotel."}
+    ]
+  },
+  hikui: {
+    adjective: "ひくい",
+    meaning: "low",
+    examples: [
+      {japanese: "この テーブルは ひくいです。", romaji: "Kono tēburu wa hikui desu.", english: "This table is low."},
+      {japanese: "ひくい やまに のぼりました。", romaji: "Hikui yama ni noborimashita.", english: "I climbed a low mountain."},
+      {japanese: "ねだんが ひくいです。", romaji: "Nedan ga hikui desu.", english: "The price is low."}
+    ]
+  },
+  nagai: {
+    adjective: "ながい",
+    meaning: "long",
+    examples: [
+      {japanese: "ながい かみが すきです。", romaji: "Nagai kami ga suki desu.", english: "I like long hair."},
+      {japanese: "この みちは ながいです。", romaji: "Kono michi wa nagai desu.", english: "This road is long."},
+      {japanese: "ながい あいだ まって いました。", romaji: "Nagai aida matte imashita.", english: "I was waiting for a long time."}
+    ]
+  },
+  mijikai: {
+    adjective: "みじかい",
+    meaning: "short",
+    examples: [
+      {japanese: "みじかい スカートを はいています。", romaji: "Mijikai sukāto o haite imasu.", english: "I'm wearing a short skirt."},
+      {japanese: "みじかい てがみを かきました。", romaji: "Mijikai tegami o kakimashita.", english: "I wrote a short letter."},
+      {japanese: "みじかい あいさつを しました。", romaji: "Mijikai aisatsu o shimashita.", english: "I gave a short greeting."}
+    ]
+  },
+  atsui: {
+    adjective: "あつい",
+    meaning: "hot",
+    examples: [
+      {japanese: "きょうは あついです。", romaji: "Kyō wa atsui desu.", english: "Today is hot."},
+      {japanese: "あつい コーヒーが のみたいです。", romaji: "Atsui kōhī ga nomitai desu.", english: "I want to drink hot coffee."},
+      {japanese: "なつは とても あついです。", romaji: "Natsu wa totemo atsui desu.", english: "Summer is very hot."}
+    ]
+  },
+  samui: {
+    adjective: "さむい",
+    meaning: "cold",
+    examples: [
+      {japanese: "ふゆは さむいです。", romaji: "Fuyu wa samui desu.", english: "Winter is cold."},
+      {japanese: "さむい みずで あらいました。", romaji: "Samui mizu de araimashita.", english: "I washed with cold water."},
+      {japanese: "きょうの あさは さむかったです。", romaji: "Kyō no asa wa samukatta desu.", english: "This morning was cold."}
+    ]
+  },
+  atatakai: {
+    adjective: "あたたかい",
+    meaning: "warm",
+    examples: [
+      {japanese: "あたたかい スープが のみたいです。", romaji: "Atatakai sūpu ga nomitai desu.", english: "I want to drink warm soup."},
+      {japanese: "この へやは あたたかいです。", romaji: "Kono heya wa atatakai desu.", english: "This room is warm."},
+      {japanese: "あたたかい ふくを きて ください。", romaji: "Atatakai fuku o kite kudasai.", english: "Please wear warm clothes."}
+    ]
+  },
+  suzushii: {
+    adjective: "すずしい",
+    meaning: "cool",
+    examples: [
+      {japanese: "あきは すずしいです。", romaji: "Aki wa suzushii desu.", english: "Autumn is cool."},
+      {japanese: "すずしい かぜが ふいて います。", romaji: "Suzushii kaze ga fuite imasu.", english: "A cool wind is blowing."},
+      {japanese: "もっと すずしい ところに いきたいです。", romaji: "Motto suzushii tokoro ni ikitai desu.", english: "I want to go to a cooler place."}
+    ]
+  },
+  muzukashii: {
+    adjective: "むずかしい",
+    meaning: "difficult",
+    examples: [
+      {japanese: "この もんだいは むずかしいです。", romaji: "Kono mondai wa muzukashii desu.", english: "This problem is difficult."},
+      {japanese: "にほんごは むずかしいですが、おもしろいです。", romaji: "Nihongo wa muzukashii desu ga, omoshiroi desu.", english: "Japanese is difficult but interesting."},
+      {japanese: "むずかしい しごとを しています。", romaji: "Muzukashii shigoto o shite imasu.", english: "I'm doing difficult work."}
+    ]
+  },
+  yasashii: {
+    adjective: "やさしい",
+    meaning: "easy",
+    examples: [
+      {japanese: "この しごとは やさしいです。", romaji: "Kono shigoto wa yasashii desu.", english: "This work is easy."},
+      {japanese: "やさしい にほんごで はなして ください。", romaji: "Yasashii nihongo de hanashite kudasai.", english: "Please speak in easy Japanese."},
+      {japanese: "この ほんは やさしくて いいです。", romaji: "Kono hon wa yasashikute ii desu.", english: "This book is easy and good."}
+    ]
+  },
+  omoshiroi: {
+    adjective: "おもしろい",
+    meaning: "interesting",
+    examples: [
+      {japanese: "この えいがは おもしろいです。", romaji: "Kono eiga wa omoshiroi desu.", english: "This movie is interesting."},
+      {japanese: "おもしろい ほんを よんで います。", romaji: "Omoshiroi hon o yonde imasu.", english: "I'm reading an interesting book."},
+      {japanese: "にほんの ぶんかは おもしろいです。", romaji: "Nihon no bunka wa omoshiroi desu.", english: "Japanese culture is interesting."}
+    ]
+  },
+  tsumaranai: {
+    adjective: "つまらない",
+    meaning: "boring",
+    examples: [
+      {japanese: "この テレビは つまらないです。", romaji: "Kono terebi wa tsumaranai desu.", english: "This TV show is boring."},
+      {japanese: "つまらない かいぎが ながかったです。", romaji: "Tsumaranai kaigi ga nagakatta desu.", english: "The boring meeting was long."},
+      {japanese: "つまらない ほんは よみません。", romaji: "Tsumaranai hon wa yomimasen.", english: "I don't read boring books."}
+    ]
+  },
+  utsukushii: {
+    adjective: "うつくしい",
+    meaning: "beautiful",
+    examples: [
+      {japanese: "うつくしい はなが さいています。", romaji: "Utsukushii hana ga saite imasu.", english: "Beautiful flowers are blooming."},
+      {japanese: "この えは とても うつくしいです。", romaji: "Kono e wa totemo utsukushii desu.", english: "This painting is very beautiful."},
+      {japanese: "うつくしい おんがくを ききました。", romaji: "Utsukushii ongaku o kikimashita.", english: "I listened to beautiful music."}
+    ]
+  },
+  minikui: {
+    adjective: "みにくい",
+    meaning: "ugly",
+    examples: [
+      {japanese: "この えは みにくいです。", romaji: "Kono e wa minikui desu.", english: "This painting is ugly."},
+      {japanese: "みにくい ふくを きて います。", romaji: "Minikui fuku o kite imasu.", english: "He's wearing ugly clothes."},
+      {japanese: "みにくい たてものですね。", romaji: "Minikui tatemono desu ne.", english: "That's an ugly building, isn't it?"}
+    ]
+  },
+  shinsetsu: {
+    adjective: "しんせつな",
+    meaning: "kind",
+    examples: [
+      {japanese: "しんせつな ひとに あいました。", romaji: "Shinsetsu na hito ni aimashita.", english: "I met a kind person."},
+      {japanese: "せんせいは しんせつです。", romaji: "Sensei wa shinsetsu desu.", english: "The teacher is kind."},
+      {japanese: "しんせつに して くれて ありがとう。", romaji: "Shinsetsu ni shite kurete arigatou.", english: "Thank you for being kind to me."}
+    ]
+  },
+  ijiwaru: {
+    adjective: "いじわるな",
+    meaning: "mean",
+    examples: [
+      {japanese: "いじわるな こどもが います。", romaji: "Ijiwaru na kodomo ga imasu.", english: "There is a mean child."},
+      {japanese: "いじわるな ことを しないで ください。", romaji: "Ijiwaru na koto o shinai de kudasai.", english: "Please don't do mean things."},
+      {japanese: "あの ひとは いじわるです。", romaji: "Ano hito wa ijiwaru desu.", english: "That person is mean."}
+    ]
+  },
+  genki: {
+    adjective: "げんきな",
+    meaning: "energetic",
+    examples: [
+      {japanese: "げんきな こどもたちです。", romaji: "Genki na kodomo-tachi desu.", english: "They are energetic children."},
+      {japanese: "げんきに して いますか？", romaji: "Genki ni shite imasu ka?", english: "Are you doing well?"},
+      {japanese: "げんきな おんがくが すきです。", romaji: "Genki na ongaku ga suki desu.", english: "I like energetic music."}
+    ]
+  },
+  tsukareta: {
+    adjective: "つかれた",
+    meaning: "tired",
+    examples: [
+      {japanese: "きょうは とても つかれました。", romaji: "Kyō wa totemo tsukaremashita.", english: "I'm very tired today."},
+      {japanese: "つかれた ときは ねます。", romaji: "Tsukareta toki wa nemasu.", english: "When I'm tired, I sleep."},
+      {japanese: "つかれた かおを して います。", romaji: "Tsukareta kao o shite imasu.", english: "You look tired."}
+    ]
+  },
+  hayai: {
+    adjective: "はやい",
+    meaning: "fast",
+    examples: [
+      {japanese: "この くるまは はやいです。", romaji: "Kono kuruma wa hayai desu.", english: "This car is fast."},
+      {japanese: "はやい スピードで はしって います。", romaji: "Hayai supīdo de hashitte imasu.", english: "It's running at high speed."},
+      {japanese: "はやく おきて ください。", romaji: "Hayaku okite kudasai.", english: "Please wake up early."}
+    ]
+  },
+  osoi: {
+    adjective: "おそい",
+    meaning: "slow",
+    examples: [
+      {japanese: "この パソコンは おそいです。", romaji: "Kono pasokon wa osoi desu.", english: "This computer is slow."},
+      {japanese: "おそい バスに のりました。", romaji: "Osoi basu ni norimashita.", english: "I took a slow bus."},
+      {japanese: "おそく ないて います。", romaji: "Osoku naite imasu.", english: "It's crying slowly."}
+    ]
+  },
+  oishii: {
+    adjective: "おいしい",
+    meaning: "delicious",
+    examples: [
+      {japanese: "この りょうりは おいしいです。", romaji: "Kono ryōri wa oishii desu.", english: "This dish is delicious."},
+      {japanese: "おいしい コーヒーを のみました。", romaji: "Oishii kōhī o nomimashita.", english: "I drank delicious coffee."},
+      {japanese: "もっと おいしい ものが たべたいです。", romaji: "Motto oishii mono ga tabetai desu.", english: "I want to eat more delicious food."}
+    ]
+  },
+  mazui: {
+    adjective: "まずい",
+    meaning: "bad tasting",
+    examples: [
+      {japanese: "この スープは まずいです。", romaji: "Kono sūpu wa mazui desu.", english: "This soup tastes bad."},
+      {japanese: "まずい コーヒーは のみません。", romaji: "Mazui kōhī wa nomimasen.", english: "I don't drink bad coffee."},
+      {japanese: "この レストランの りょうりは まずかったです。", romaji: "Kono resutoran no ryōri wa mazukatta desu.", english: "The food at this restaurant was bad."}
+    ]
+  },
+  amai: {
+    adjective: "あまい",
+    meaning: "sweet",
+    examples: [
+      {japanese: "この ケーキは あまいです。", romaji: "Kono kēki wa amai desu.", english: "This cake is sweet."},
+      {japanese: "あまい ものが すきです。", romaji: "Amai mono ga suki desu.", english: "I like sweet things."},
+      {japanese: "この コーヒーは あますぎます。", romaji: "Kono kōhī wa amasugimasu.", english: "This coffee is too sweet."}
+    ]
+  },
+  karai: {
+    adjective: "からい",
+    meaning: "spicy",
+    examples: [
+      {japanese: "この カレーは からいです。", romaji: "Kono karē wa karai desu.", english: "This curry is spicy."},
+      {japanese: "からい たべものが にがてです。", romaji: "Karai tabemono ga nigate desu.", english: "I'm not good with spicy food."},
+      {japanese: "もっと からく して ください。", romaji: "Motto karaku shite kudasai.", english: "Please make it more spicy."}
+    ]
+  },
+  shoppai: {
+    adjective: "しょっぱい",
+    meaning: "salty",
+    examples: [
+      {japanese: "この スープは しょっぱいです。", romaji: "Kono sūpu wa shoppai desu.", english: "This soup is salty."},
+      {japanese: "しょっぱい ものが すきです。", romaji: "Shoppai mono ga suki desu.", english: "I like salty things."},
+      {japanese: "この りょうりは しょっぱすぎます。", romaji: "Kono ryōri wa shoppasugimasu.", english: "This dish is too salty."}
+    ]
+  },
+  suppai: {
+    adjective: "すっぱい",
+    meaning: "sour",
+    examples: [
+      {japanese: "この レモンは すっぱいです。", romaji: "Kono remon wa suppai desu.", english: "This lemon is sour."},
+      {japanese: "すっぱい あめが すきです。", romaji: "Suppai ame ga suki desu.", english: "I like sour candy."},
+      {japanese: "すっぱい かおを して います。", romaji: "Suppai kao o shite imasu.", english: "He's making a sour face."}
+    ]
+  },
+  umai: {
+    adjective: "うまい",
+    meaning: "tasty",
+    examples: [
+      {japanese: "この ラーメンは うまい！", romaji: "Kono rāmen wa umai!", english: "This ramen is tasty!"},
+      {japanese: "うまい ビールが のみたいです。", romaji: "Umai bīru ga nomitai desu.", english: "I want to drink tasty beer."},
+      {japanese: "とても うまく できました。", romaji: "Totemo umaku dekimashita.", english: "It was made very well."}
+    ]
+  },
+  karui: {
+    adjective: "かるい",
+    meaning: "light",
+    examples: [
+      {japanese: "この かばんは かるいです。", romaji: "Kono kaban wa karui desu.", english: "This bag is light."},
+      {japanese: "かるい しごとを しました。", romaji: "Karui shigoto o shimashita.", english: "I did light work."},
+      {japanese: "かるい きぶんで はなしましょう。", romaji: "Karui kibun de hanashimashou.", english: "Let's talk in a light mood."}
+    ]
+  },
+  omoi: {
+    adjective: "おもい",
+    meaning: "heavy",
+    examples: [
+      {japanese: "この にもつは おもいです。", romaji: "Kono nimotsu wa omoi desu.", english: "This luggage is heavy."},
+      {japanese: "おもい ドアを あけました。", romaji: "Omoi doa o akemashita.", english: "I opened the heavy door."},
+      {japanese: "おもい きもちに なりました。", romaji: "Omoi kimochi ni narimashita.", english: "I became heavy-hearted."}
+    ]
+  },
+  yawarakai: {
+    adjective: "やわらかい",
+    meaning: "soft",
+    examples: [
+      {japanese: "この パンは やわらかいです。", romaji: "Kono pan wa yawarakai desu.", english: "This bread is soft."},
+      {japanese: "やわらかい ふとんが すきです。", romaji: "Yawarakai futon ga suki desu.", english: "I like soft futons."},
+      {japanese: "やわらかい こえで はなして ください。", romaji: "Yawarakai koe de hanashite kudasai.", english: "Please speak in a soft voice."}
+    ]
+  },
+  katai: {
+    adjective: "かたい",
+    meaning: "hard",
+    examples: [
+      {japanese: "この いすは かたいです。", romaji: "Kono isu wa katai desu.", english: "This chair is hard."},
+      {japanese: "かたい パンは すきじゃ ありません。", romaji: "Katai pan wa suki ja arimasen.", english: "I don't like hard bread."},
+      {japanese: "かたい ことを いうのは やめて ください。", romaji: "Katai koto o iu no wa yamete kudasai.", english: "Please stop saying harsh things."}
+    ]
+  },
+  akarui: {
+    adjective: "あかるい",
+    meaning: "bright",
+    examples: [
+      {japanese: "この へやは あかるいです。", romaji: "Kono heya wa akarui desu.", english: "This room is bright."},
+      {japanese: "あかるい いろが すきです。", romaji: "Akarui iro ga suki desu.", english: "I like bright colors."},
+      {japanese: "あかるい みらいを えがいて います。", romaji: "Akarui mirai o egaite imasu.", english: "I'm envisioning a bright future."}
+    ]
+  },
+  kurai: {
+    adjective: "くらい",
+    meaning: "dark",
+    examples: [
+      {japanese: "この みちは くらいです。", romaji: "Kono michi wa kurai desu.", english: "This road is dark."},
+      {japanese: "くらい へやで ねます。", romaji: "Kurai heya de nemasu.", english: "I sleep in a dark room."},
+      {japanese: "くらい きもちに なりました。", romaji: "Kurai kimochi ni narimashita.", english: "I became depressed."}
+    ]
+  },
+  urusai: {
+    adjective: "うるさい",
+    meaning: "noisy",
+    examples: [
+      {japanese: "この まちは うるさいです。", romaji: "Kono machi wa urusai desu.", english: "This town is noisy."},
+      {japanese: "うるさい こえで はなさないで ください。", romaji: "Urusai koe de hanasanaide kudasai.", english: "Please don't speak in a loud voice."},
+      {japanese: "うるさくて ねむれません。", romaji: "Urusakute nemuremasen.", english: "It's too noisy to sleep."}
+    ]
+  },
+  shizuka: {
+    adjective: "しずかな",
+    meaning: "quiet",
+    examples: [
+      {japanese: "この としょかんは しずかです。", romaji: "Kono toshokan wa shizuka desu.", english: "This library is quiet."},
+      {japanese: "しずかな ところで べんきょうします。", romaji: "Shizuka na tokoro de benkyou shimasu.", english: "I study in a quiet place."},
+      {japanese: "もっと しずかに して ください。", romaji: "Motto shizuka ni shite kudasai.", english: "Please be more quiet."}
+    ]
+  },
+  kirei: {
+    adjective: "きれいな",
+    meaning: "clean",
+    examples: [
+      {japanese: "この へやは きれいです。", romaji: "Kono heya wa kirei desu.", english: "This room is clean."},
+      {japanese: "きれいな みずが のみたいです。", romaji: "Kirei na mizu ga nomitai desu.", english: "I want to drink clean water."},
+      {japanese: "きれいに あらって ください。", romaji: "Kirei ni aratte kudasai.", english: "Please wash it clean."}
+    ]
+  },
+  kitanai: {
+    adjective: "きたない",
+    meaning: "dirty",
+    examples: [
+      {japanese: "この トイレは きたないです。", romaji: "Kono toire wa kitanai desu.", english: "This toilet is dirty."},
+      {japanese: "きたない ふくを きて います。", romaji: "Kitanai fuku o kite imasu.", english: "He's wearing dirty clothes."},
+      {japanese: "きたない てで たべないで ください。", romaji: "Kitanai te de tabenaide kudasai.", english: "Please don't eat with dirty hands."}
+    ]
+  },
+  yuumei: {
+    adjective: "ゆうめいな",
+    meaning: "famous",
+    examples: [
+      {japanese: "この レストランは ゆうめいです。", romaji: "Kono resutoran wa yuumei desu.", english: "This restaurant is famous."},
+      {japanese: "ゆうめいな えいがスターに あいました。", romaji: "Yuumei na eiga sutā ni aimashita.", english: "I met a famous movie star."},
+      {japanese: "にほんは ゆうめいな おんせんが たくさん あります。", romaji: "Nihon wa yuumei na onsen ga takusan arimasu.", english: "Japan has many famous hot springs."}
+    ]
+  },
+  hen: {
+    adjective: "へんな",
+    meaning: "strange",
+    examples: [
+      {japanese: "へんな おとが しました。", romaji: "Hen na oto ga shimashita.", english: "I heard a strange sound."},
+      {japanese: "あの ひとは へんです。", romaji: "Ano hito wa hen desu.", english: "That person is strange."},
+      {japanese: "へんな かおを しないで ください。", romaji: "Hen na kao o shinaide kudasai.", english: "Please don't make strange faces."}
+    ]
+  },
+  fuben: {
+    adjective: "ふべんな",
+    meaning: "inconvenient",
+    examples: [
+      {japanese: "この アパートは ふべんです。", romaji: "Kono apāto wa fuben desu.", english: "This apartment is inconvenient."},
+      {japanese: "ふべんな ところに すんで います。", romaji: "Fuben na tokoro ni sunde imasu.", english: "I live in an inconvenient place."},
+      {japanese: "ふべんを かんじて います。", romaji: "Fuben o kanjite imasu.", english: "I feel it's inconvenient."}
+    ]
+  },
+  benri: {
+    adjective: "べんりな",
+    meaning: "convenient",
+    examples: [
+      {japanese: "この でんわは べんりです。", romaji: "Kono denwa wa benri desu.", english: "This phone is convenient."},
+      {japanese: "べんりな みせが たくさん あります。", romaji: "Benri na mise ga takusan arimasu.", english: "There are many convenient stores."},
+      {japanese: "べんりな アプリを つかって います。", romaji: "Benri na apuri o tsukatte imasu.", english: "I'm using a convenient app."}
+    ]
+  },
+  abunai: {
+    adjective: "あぶない",
+    meaning: "dangerous",
+    examples: [
+      {japanese: "この みちは あぶないです。", romaji: "Kono michi wa abunai desu.", english: "This road is dangerous."},
+      {japanese: "あぶない ことを しないで ください。", romaji: "Abunai koto o shinaide kudasai.", english: "Please don't do dangerous things."},
+      {japanese: "あぶない ところに いかないで ください。", romaji: "Abunai tokoro ni ikanaide kudasai.", english: "Please don't go to dangerous places."}
+    ]
+  },
+  anzen: {
+    adjective: "あんぜんな",
+    meaning: "safe",
+    examples: [
+      {japanese: "この まちは あんぜんです。", romaji: "Kono machi wa anzen desu.", english: "This town is safe."},
+      {japanese: "あんぜんな ところに います。", romaji: "Anzen na tokoro ni imasu.", english: "I'm in a safe place."},
+      {japanese: "あんぜんに きを つけて ください。", romaji: "Anzen ni ki o tsukete kudasai.", english: "Please be careful for safety."}
+    ]
+  },
+  tokubetsu: {
+    adjective: "とくべつな",
+    meaning: "special",
+    examples: [
+      {japanese: "きょうは とくべつな ひです。", romaji: "Kyō wa tokubetsu na hi desu.", english: "Today is a special day."},
+      {japanese: "とくべつな プレゼントを かいました。", romaji: "Tokubetsu na purezento o kaimashita.", english: "I bought a special present."},
+      {japanese: "とくべつな おきゃくさまが きます。", romaji: "Tokubetsu na okyakusama ga kimasu.", english: "A special guest is coming."}
+    ]
+  },
+  futsuu: {
+    adjective: "ふつうの",
+    meaning: "normal",
+    examples: [
+      {japanese: "ふつうの いちにちでした。", romaji: "Futsuu no ichinichi deshita.", english: "It was a normal day."},
+      {japanese: "ふつうの ひとは しません。", romaji: "Futsuu no hito wa shimasen.", english: "Normal people don't do that."},
+      {japanese: "ふつうに はなして ください。", romaji: "Futsuu ni hanashite kudasai.", english: "Please speak normally."}
+    ]
+  }
+};
+
+function loadAdjectiveDetails() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const adjRomaji = urlParams.get('adjective');
+  const adjInfo = adjectiveData[adjRomaji];
+  
+  if (!adjInfo) {
+    document.getElementById('adjectiveDetails').innerHTML = '<h2>Adjective not found</h2>';
+    return;
+  }
+  
+  const container = document.getElementById('adjectiveDetails');
+  container.innerHTML = `
+    <h1>${adjInfo.adjective} (${adjRomaji})</h1>
+    <h2>${adjInfo.meaning}</h2>
+    <h3>Example Sentences:</h3>
+  `;
+  
+  adjInfo.examples.forEach((example, index) => {
+    const exampleDiv = document.createElement('div');
+    exampleDiv.className = 'example';
+    exampleDiv.innerHTML = `
+      <p>${example.japanese}</p>
+      <p class="romaji">${example.romaji}</p>
+      <p class="english">${example.english}</p>
+      <button class="speak-btn" onclick="speak('${example.japanese}')">Sound</button>
+    `;
+    container.appendChild(exampleDiv);
+  });
+}
+
+function speak(text) {
+  if ('speechSynthesis' in window) {
+    const utterance = new SpeechSynthesisUtterance();
+    utterance.text = text;
+    utterance.lang = 'ja-JP';
+    utterance.rate = 0.9;
+    window.speechSynthesis.speak(utterance);
+  } else {
+    alert('Text-to-speech not supported in this browser');
+  }
+}
+
+loadAdjectiveDetails();
+</script>
+
+</body>
+</html>
